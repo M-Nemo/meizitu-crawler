@@ -1,0 +1,23 @@
+{
+  "name": "meizitu-crawler",
+  "version": "1.0.0",
+  "description": "meizitu-crawler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "crawler"
+  ],
+  "author": "nemo",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.5",
+    "cheerio": "^0.22.0",
+    "express": "^4.15.0",
+    "fs": "0.0.1-security",
+    "q": "^1.4.1",
+    "request": "^2.80.0",
+    "superagent": "^3.5.0"
+  }
+}
