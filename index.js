@@ -30,12 +30,10 @@ function getalbumUrls(){
     },function(err,result){
         var reg = /[\d\.]+\,([\d\.]+)/g;
         var result = result.join(",").replace(reg, "$1").split(",");
-        // console.log(result);
         for (var i = 0; i < result.length; i+=2) {
             albumUrls.push(result[i])
         }
         getimageurls(albumUrls);
-        // console.log(albumUrls);
     })
 }
 var concurrencyCount = 0;
@@ -52,7 +50,6 @@ function fetchUrl_album(url,callback){
             var $ = cheerio.load(sres.text);
             $('#pins a').each(function(){
                 u.push($(this).attr('href'));
-                // console.log($(this).attr('href'))
             })
             callback(null,u);
             concurrencyCount--;
@@ -81,10 +78,8 @@ function fetchUrl_image(url,callback){
             var image = new Array();
             var $ = cheerio.load(sres.text);
             var len = parseInt($(".pagenavi a:nth-child(7)>span").text());
-            // var len = 30;
             for (var i = 1; i <= len; i++) {
                 image.push(url+'/'+i)
-                // callback(null,url+'/'+i);
             }
             callback(null,image);
             concurrencyCount--;
@@ -114,36 +109,13 @@ function fetchUrl_download(url,callback){
             console.log('正在下载' + src);
             download(src, dir, filename);
             console.log('下载完成');
-            // console.log(src);
             callback(null,filename);
             concurrencyCount--;
         })
 }
-getalbumUrls();
-/*function _do() {
-    var c = setInterval(function(){
-        if (counter==100) {
-            getimageurls(albumUrls);
-            // console.log(albumUrls)
-            //停止setInterval
-            clearInterval(c);
-        }
-        console.log(counter)
-    }, 100);   
-}
-_do();*/
 var download = function(url, dir, filename){
     request.head(url, function(err, res, body){
         request(url).pipe(fs.createWriteStream(dir + "/" + filename));
     });
 }
-/*var download = function(uri, filename, callback){
-    request.head(uri, function(err, res, body){
-    if (err) {
-        console.log('err: '+ err);
-        return false;
-    }
-    console.log('res: '+ res);
-    request(uri).pipe(fs.createWriteStream('public/'+filename)).on('close', callback); 
-    });
-};*/
+getalbumUrls();
