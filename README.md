@@ -1,5 +1,17 @@
 # meizitu-crawler
 
+> A Node.js crawler
+
+## Build Setup
+
+```Bash
+# install dependencies
+npm install
+
+# serve run
+node index.js
+```
+
 学习NodeJS的第一站，第一次自己尝试写个爬虫，说实话，自己都嫌弃写的垃圾，后续应该还会慢慢重写吧，也希望dalao们不要笑话啦。
 
 ------
